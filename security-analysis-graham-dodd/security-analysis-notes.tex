@@ -1,0 +1,255 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage{caption}
+\usepackage{subcaption}
+\usetikzlibrary{automata}
+\usetikzlibrary{backgrounds}
+\tikzset{>=stealth}
+\usepackage[parfill]{parskip}
+
+\newcommand*{\QED}{\hfill\ensuremath{\blacksquare}} 
+\newcommand*{\defn}[1]{\textit{Def:} \textbf{#1}}
+% usage: \defn{Decision tree} is method for approximating 
+
+\title{Security Analysis Notes}
+\author{Eric Johnson}
+\pagestyle{fancy}
+\lhead{Eric Johnson}
+\rhead{Security Analysis Notes}
+\renewcommand{\headrulewidth}{1pt}
+
+\begin{document}
+\maketitle
+\section*{Preface - Klarman}
+\begin{quote}
+Value investors, therefore, should not try to time the market or guess whether it will rise or fall in the near term. Rather, they should rely on a bottom-up approach, sifting the financial markets for bargains and then buying them, regardless of the level or recent direction of the market or economy.
+\end{quote}
+-Klarman
+\section*{Introduction to the Sixth Edition - Grant}
+The timing and continued influence of Graham and Dodd's work is remarkable. 
+\par
+If anyone understood the folly of projecting current experience into the unpredictable future, it was Graham.
+\subsection*{Problems of Investment Policy}
+Its not hard to \textit{qualitatively} define a good stock, but to \textit{quantitatively} define one is very hard.
+\par
+Four questions on which one could base their investment standards:
+\begin{enumerate}
+\item general future of corporation profits
+\item differential in quality between one type of company and another
+\item influence of interest rates on the dividends or earnings that one should demand
+\item the extent to which purchases and sales should be governed by the factor of timing distinct from price
+\end{enumerate}
+Each of these may seem like good advice at face value, however, they bring up more warnings than positive signs (thus are not good metrics on which to invest money) when considered in depth.
+
+\section{Survey and Approach}
+\subsection*{Introduction: The Essential Lessons - Lowenstein}
+Avoiding serious loss is a \textit{precondition} for sustaining a high compound rate of growth.
+\par
+At a price, any security can be a suitable investment, but none is safe merely by virtue of its form.
+\par
+\defn{Intrinsic value} is the worth of an enterprise to one who owns it in its entirety.
+\par
+Difference between an investment and a speculation. At a high price relative to value, a security is sheer speculation. At a low price relative to value, security is a sound investment. Margin of safety is the difference between value and this low price (vide infra).
+\par
+\defn{Double counting} when investors buy a stock on the basis of their faith in management and then, seeing that the stock has risen, take it as additional proof of management's powers and bid the stock up further.
+
+\subsection{The Scope and Limitations of Security Analysis. The Concept of Intrinsic Value}
+Three functions of security analysis:
+\begin{enumerate}
+\item \textbf{Descriptive function} - marshalling the important facts relating to an issue and presenting them in a coherent, readily intelligible manner. More penetrating description reveals strong and weak points in the position of an issue, compares them with other similar issues, and appraise the factors which are likely to influence its future performance. You can get this information from an outside source.
+\item \textbf{Selective function} - tries to determine whether a given issue should be bought, sold, retained, or exchanged for some other.
+\par
+\textit{Intrinsic Value vs. Price} Intrinsic value is hard to explicitly define. Loosely, it is the value of a security that is justified by facts (e.g., the assets, earnings, dividends, definite prospects) and is seperate from market quotations established by artificial manipulation or distorted by psychological excesses. It is a mistake to think of intrinsic value as anything concrete.
+\par
+\textit{Intrinsic Value and "Earning Power"} Some feel intrinsic value can be represented by future earning power. However, earning power implies knowledge of future results, which in most cases is unreliable, thus basing intrinsic value on earning power is not a good idea. 
+\par
+\textit{Role of Intrinsic Value in the Work of the Analyst} Generally, security analysis does not need to formulate intrinsic value exactly - it only needs to decide if a value is adequate for a security, or if the security is significantly under- or over-priced relative to its intrinsic value. For example, you wouldn't ID an old man when he buys alcohol, his "intrinsic age" is significantly over the age of 21.
+\par
+Even a very indefinite idea of intrinsic value can justify a conclusion regarding a security if its price falls or rises far enough outside of a minimum or maximum range.
+\par
+\textit{Principal Obstacles to Success of the Analyst}
+\begin{enumerate}
+\item inadequate or incorrect data: usually a problem of someone hiding something
+\item uncertainties of the future: need to account for this in analysis
+\item irrational behavior of the market: take into account whatever influences may adversely govern the market price
+\end{enumerate}
+Market price is frequently out of line with intrinsic value - this is intuitive.
+\par
+There is inherent tendency for a security to eventually return in price to its intrinsic value. This could take a very long time, sometimes so long that the underlying intrinsic value it is returning too has changed as well. The best judgements will be made when business/market conditions are progressing steadily.
+\par
+\textit{Relationship of Intrinsic Value to Market Price} The market is a voting machine. Individual participants register choices partly based on emotions and partly based on reasoning. Analytical factors have a partial and indirect effect on market price.
+\par
+\textit{The Value of Analysis Diminishes as Chance Increases} No matter how sound your analysis may be, if there is an element of chance/risk that has significant effect on your outcome, you analysis will not be of much value (can't determine if it causes you any success). Analysis is only truly valuable in situations where the element of chance has little effect, thus you know that if you have success, it was because of strong analysis.
+\item \textbf{Critical function} - analyst must be highly critical of all the information that he is presented. Always look out for mistakes, correct abuses (of power by the management, etc.), and review work to ensure soundness in standards of selection.
+\end{enumerate}
+
+\subsection{Fundamental Elements in the Problem of Analysis. Quantitative and Qualitative Factors}
+\textbf{Four Fundamental Elements} - factors in analysis of any matter related to a security:
+\begin{enumerate}
+\item security - character of the \textit{enterprise} and the \textit{terms} of the deal, analyst must pay attention to the judgement of the market and enterprises that are strongly favored, but must remain independent and keep a critical viewpoint
+\item price - you never want to buy something that is overpriced
+\item time - time at which you buy a security has a large impact on price/market conditions/company status/etc., security analysis should be as time independent as possible, but this is usually not how things happen in practice
+\item person - depends on the financial state of the person
+\end{enumerate}
+Should security $S$ be bought (or sold, or retained) at price $P$, at this time $T$, by individual $I$?
+\par
+\textbf{Qualitative and Quantitative Factors in Analysis}
+\begin{itemize}
+\item The technique and extent of analysis shoud be limited by character and purpose of commitment. Just because there is a ton of data doesn't mean it needs to all be analyzed. Also one should not put more effort into getting data than the problem justifies.
+\item The value of data depends heavily on what is being analyzed.
+\item Quantitative data is more concrete, easier to find, and more dependable than qualitative factors. Qualitative factors are usually somewhat opinion based. Most analysis is dedicated to the data.
+\item Qualitative factors involve understanding the nature of the business and its future prospects, these are very hard to define/analyze
+\item Do not only consider how a business has fared recently (be it positive or negative), abnormally good or bad conditions will not last forever
+\item Management teams are usually evaluated by looking at past performance (their "track record")
+\item Stock valuation tends to double count a management team's impact, counting once based on earnings (those came from management), and again purely because of a good management team - this leads to over valuation
+\item Estimating future earnings by projecting a past trend into the future and then using this projection as a basis for valuing the business is risky, future earnings are an assumption, not a fact
+\item Individual or average figures of the past are more useful than a trend
+\item Analysis assumes a past average supplies a rough index to what may be expected of the future, not that the past average will be repeated, we only want this rough index
+\item A trend cannot be used as a rough index because it represents a definite prediction, and will either be right or wrong
+\item Trend should be considered a \textit{qualitative} factor, even though it is stated in quantitative terms
+\item This is true because no limit is fixed on how far ahead the trend is projected and therefore the process of valuation, while seemingly mathematical, is in reality psychological and quite arbitrary
+\item Its hard to tell how much a qualitative factor reflects itself in a security's price (its not constrained by anything mathematical), so its factor is almost always exagerated
+\item Analysis is concerned with values which are supported by facts and not those who depend upon expectations
+\item Analyst’s approach is opposed to a speculator's, whose success depends on his ability to forecast or to guess future developments
+\item Analyst must take possible future changes into account, but his \textbf{primary aim is not so much to profit from them as to guard against them}
+\item \textit{Inherent stability} is the most important qualitative factor
+\item More stability means more resistance to change which means that future results will be more predictable (they are more dependable)
+\item A satisfactory statistical exhibit (of a security) is a necessary (to want to buy it) though by no means a sufficient (its existence alone isn't enough justification) condition for a favorable decision by the analyst
+\end{itemize}
+
+\subsection{Sources of Information}
+Data that companies report can vary widely. 
+\par
+\textbf{Income Account} is not complete unless it contains the following items: 
+\begin{enumerate}
+\item sales
+\item net earnings (before the items following)
+\item depreciation (and depletion)
+\item interest charges
+\item non-operating income (in detail)
+\item income taxes
+\item dividends paid
+\item surplus adjustments (in detail).
+\end{enumerate}
+Security and Exchange Act (SEC) makes some information mandatory to be given to public.
+\par
+Look out for data that may not be released to shareholders, but may be required by law to released to government agencies.
+\par
+Analyst should consult the original reports and other documents whenever possible, do not rely upon summaries or transcriptions anymore than needed.
+
+\subsection{Distinctions Between Investment and Speculation}
+\begin{center}
+  \begin{tabular}{ c | c }
+    \textbf{Investment} & \textbf{Speculation} \\ \hline
+    outright purchases & purchase on margin \\ \hline
+    permanent holding & for a "quick turn" \\ \hline
+    for income & for profit \\ \hline
+    safe securities & risky issues
+  \end{tabular}
+\end{center}
+\textbf{Standards of safety}
+\par
+Purchase at price levels which can be considered conservative in the light of experience. If a strong speculative market results in advancing the price to a level out of line with these standards of value, sell shares and wait for a reasonable price to return before reacquiring them.
+\par
+\defn{Investment} is an investment operation is one which, upon \textit{thorough analysis}, \textit{promises safety of principal} and a \textit{satisfactory return}. Operations not meeting these requirements are speculative.
+\par
+Diversification could be necessary to reduce the risk involved in the separate issues to the minimum allowable amount within the requirements of investment.
+\par
+An investment operations can include types of arbitrage and hedging commitments that involve the sale of one security against the purchase of another.
+\par
+\defn{Thorough analysis} is the study of the facts on the security in the light of established standards of safety and value.
+\par
+\defn{Safety} is protection against loss under all normal or reasonably likely conditions or variations.
+\par
+\defn{Satisfactory return} is a subjective term; it covers any rate or amount of return, however low, which the investor is willing to accept, provided he acts with reasonable intelligence.
+\par
+A security cannot be classified as an \textit{investment} for any possible price (eventually, the security will become over-priced and become a speculation).
+\par
+\begin{quote}
+An investment operation is one that can be justified on both qualitative and quantitative grounds.
+\end{quote}
+\textbf{Other Aspects of Investment and Speculation}
+\begin{itemize}
+\item For investment, the future is essentially something to be guarded against rather than to be profited from
+\item Investment and speculative components of a price for a security
+\item Market price of a security may be said to exceed intrinsic value only when the market price is clearly the reflection of unintelligent speculation (intrinsic value can have an investment component and a speculative component, you can arrive at intrinsic value via intelligent speculation for speculative component + investment component)
+\item It is the function of the stock market, and not of the analyst, to appraise the speculative factors in a given common-stock picture. To this important extent the market, not the analyst, determines intrinsic value (Market is determining intrinsic value of the speculative component)
+\end{itemize}
+
+\subsection{Classification of Securities}
+The common grouping of securities is to divide into two groups: stocks and bonds, and then to divide stocks into two sub-groups: preferred stock and common stock. The following are objections to this grouping scheme.
+\begin{itemize}
+\item Preferred stock should be grouped with bonds. Preferred stockholders are partners or owners of the business only in a technical, legalistic sense; but they resemble bondholders in the purpose and expected results of their investment.
+\item Bonds are not inherently safe. They are typically considered safe, (or safer than holding common stock) because businesses will usually not assume fixed obligations without knowing they can pay them. Regardless, that doesn't stop a business from doing that. The bond of a business without assets or earning power would be every bit as valueless as the stock of such an enterprise.
+\item Titles don't describe the groupings accurately. What follows is the standard patterns that are traditionally expected for bonds, preferred stock, and common stock.
+\begin{enumerate}
+\item Bond pattern
+\begin{enumerate}
+\item The unqualified right to a fixed interest payment on fixed dates. 
+\item The unqualified right to repayment of a fixed principal amount on a fixed date.
+\item No further interest in assets or profits, and no voice in the management.
+\end{enumerate}
+\item Preferred stock pattern
+\begin{enumerate}
+\item A stated rate of dividend in priority to any payment on the common. (Hence full preferred dividends are mandatory if the common receives any dividend; but if nothing is paid on the common, the preferred dividend is subject to the discretion of the directors). 
+\item The right to a stated principal amount in the event of dissolution, in priority to any payments to the common stock.
+\item Either no voting rights, or voting power shared with the common.
+\end{enumerate}
+\item Common stock pattern
+\begin{enumerate}
+\item A pro rata ownership of the company's assets in excess of its debts and preferred stock issues.
+\item A pro rata interest in all profits in excess of prior deductions.
+\item A pro rata vote for the election of directors and for other purposes.
+\end{enumerate}
+\end{enumerate}
+The problem is that bonds, preferred and common stocks do not follow these standards. This can be misleading to potential investors in the securities. The peculiarities and complexities to be found in the present day security list give reason for why the traditional practice of pigeonholing and generalizing about securities in accordance with their titles is wrong.
+\end{itemize}
+The standard procedure outlined above should be replaced. Securities should be classified according to the normal behavior of the issue after purchase, e.g. its risk-and-profit characteristics as the buyer or owner would reasonably view them.
+\par 
+\textbf{Suggested New Classification Scheme}
+\begin{center}
+  \begin{tabular}{ c | c }
+    \textbf{Class} & \textbf{Representative Issue} \\ 
+    \hline
+    Securities of fixed value type & high grade bond or preferred stock \\ 
+    \hline
+    Senior securities of variable value type & \\ 
+    - well protected issues with profit possibilites & high grade convertible bond \\ 
+    - inadequately protected issues & lower-grade bond or preferred stock \\ 
+    \hline
+    Common stock type & common stock \\
+  \end{tabular}
+\end{center}
+This grouping could be approximated as follows.
+\begin{enumerate}
+\item Investment bonds and preferred stocks. 
+\item Speculative bonds and preferred stocks.
+\begin{enumerate}
+\item Convertibles, etc.
+\item Low-grade senior issues.
+\end{enumerate}
+\item Common stocks.
+\end{enumerate}
+\textit{Characteristics of each new type}
+\begin{itemize}
+\item The first class includes issues, of whatever title, in which prospective change of value may fairly be said to hold minor importance. The owner's dominant interest is in the safety of his principal and his sole purpose in making the commitment is to obtain a steady income.
+\item In the second class, prospective changes in the value of the principal assume real significance. 
+\item The dividing line between groups is indefinite. Borderline cases can be handled without undue difficulty however, by considering them from the standpoint of either category or of both.
+\item Primary emphasis in classification is always placed on what the owner is likely to get, or is justified in expecting from his investment, under conditions which appear to be probable at the time of purchase or analysis.
+\end{itemize}
+
+\section{Fixed Value Investments}
+\subsection*{Introduction: Unshackling Bonds - Marks}
+
+Important to focus on less of the quantitative formulas and more of the flexible common sense ideas presented in this book. Formulas are probably out of date but the ideas are important to deeply understand. 
+\end{document}
